@@ -39,9 +39,21 @@ function App() {
   );
 }
 
+function GridOverlay() {
+  return (
+    <div className="grid-container">
+      <div className="grid top-left"></div>
+      <div className="grid top-right"></div>
+      <div className="grid bottom-left"></div>
+      <div className="grid bottom-right"></div>
+    </div>
+  );
+}
+
 function BoundingBox() {
   return (
     <div className="Bounding-box">
+      <GridOverlay></GridOverlay>
       <Snake></Snake>
     </div>
   );
