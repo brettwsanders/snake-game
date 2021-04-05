@@ -1,11 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
+  const [direction, setDirection] = useState("idle");
+
+  function downHandler(event: any) {
+    const { key } = event;
+    switch (key) {
+      case "ArrowUp":
+        setDirection("up");
+        break;
+      case "ArrowDown":
+        setDirection("down");
+        break;
+      case "ArrowLeft":
+        setDirection("left");
+        break;
+      case "ArrowRight":
+        setDirection("right");
+        break;
+      default:
+        console.log("Invalid Entry. Try again.");
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("keydown", downHandler);
+  });
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Snake!</h1>
+        <h2>{direction}</h2>
       </header>
       <BoundingBox></BoundingBox>
     </div>
@@ -13,18 +40,6 @@ function App() {
 }
 
 function BoundingBox() {
-  function downHandler(event: any) {
-    const { key } = event;
-    console.log("key is", key);
-  }
-
-  useEffect(() => {
-    window.addEventListener("keydown", downHandler);
-  });
-
-  // make an outline of the box.
-  // make it square.
-  // center the box.
   return (
     <div className="Bounding-box">
       <Snake></Snake>
@@ -33,13 +48,7 @@ function BoundingBox() {
 }
 
 function Snake() {
-  return <div className="Snake"></div>;
+  return <div className="Snake-head"></div>;
 }
-
-// create listener
-// when right arrow go right
-// when up arrow go up
-// when down arrow go down
-// when left arrow go left
 
 export default App;
